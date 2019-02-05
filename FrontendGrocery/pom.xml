@@ -32,6 +32,54 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+
+	<!-- spring-webmvc -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>5.1.4.RELEASE</version>
+	</dependency>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</dependencies>
 	<build>
 		<plugins>
