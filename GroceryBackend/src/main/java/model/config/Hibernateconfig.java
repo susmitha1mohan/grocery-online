@@ -3,7 +3,6 @@ package model.config;
 import java.util.HashMap;
 import java.util.Locale.Category;
 import java.util.Map;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
