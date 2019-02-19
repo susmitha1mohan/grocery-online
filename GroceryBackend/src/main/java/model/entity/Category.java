@@ -1,52 +1,71 @@
 package model.entity;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Category {
+		
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDescription() {
+		return description;
+	}
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int cId;
+	public String getImageURL() {
+		return imageURL;
+	}
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
+	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	
-	@Size(min=3,max=30,message="Invalid Name")
-	private String cName;
-	
-	@Pattern(regexp="[a-z][0-9][0-9][0-9]")
-	private String cType;
-
-	public Category(String cName, String cType) {
-		super();
-		this.cName = cName;
-		this.cType = cType;
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", name=" + name + ", description=" + description + ", imageURL=" + imageURL
+				+ ", active=" + active + "]";
 	}
 
-	public int getcId() {
-		return cId;
+		//private fields
+	    @Id
+	    @GeneratedValue(strategy=GenerationType.IDENTITY)
+		private int id;
+	    
+		private String name;
+		
+		private String description;
+		
+		@Column(name="image_url")//d-b
+		private String imageURL;//class filed
+		
+		@Column(name="is active")
+		private boolean active = true;
+
+		public void setDescription(String string) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		
+				
+
 	}
 
-	public void setcId(int cId) {
-		this.cId = cId;
-	}
-
-	public String getcName() {
-		return cName;
-	}
-
-	public void setcName(String cName) {
-		this.cName = cName;
-	}
-
-	public String getcType() {
-		return cType;
-	}
-
-	public void setcType(String cType) {
-		this.cType = cType;
-	}
-
-}

@@ -10,14 +10,19 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<javaee.version>8.0</javaee.version>
-		
+
 	</properties>
 
-
-
-
 	<dependencies>
-
+		
+	<!-- linking GroceryBacked with FrontendGrocery -->
+              <dependency>
+              <groupId>com.sush</groupId>
+		   	  <artifactId>GroceryBackend</artifactId>
+	         <version>0.0.1-SNAPSHOT</version>
+              </dependency>
+		
+              
 		<!--javaee-api -->
 		<dependency>
 			<groupId>javax</groupId>
@@ -33,63 +38,63 @@
 			<scope>test</scope>
 		</dependency>
 
-	<!-- spring-webmvc -->
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-webmvc</artifactId>
-		<version>5.1.3.RELEASE</version>
-	</dependency>
-	
-	<!-- JSTL -->
-	<dependency>
-	<groupId>jstl</groupId>
-	<artifactId>jstl</artifactId>
-	<version>1.2</version>
-	</dependency>	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		<!-- spring-webmvc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>5.1.3.RELEASE</version>
+		</dependency>
+
+		<!-- JSTL -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	</dependencies>
 	<build>
 		<plugins>
-		<!-- java update  -->
+			<!-- java update -->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
