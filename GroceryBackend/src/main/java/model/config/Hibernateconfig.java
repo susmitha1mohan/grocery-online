@@ -1,84 +1,64 @@
 package model.config;
 
-import java.util.Properties;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.sql.DataSource;
-
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Environment;
 
-@Configuration
-@ComponentScan(basePackages={"net.kzn.shoppingbackend.dto"})
-@EnableTransactionManagement
+//import model.entity.Category;
+import model.entity.Product;
+
 public class Hibernateconfig {
-
-	// Change the below based on the DBMS you choose
-	private final static String DATABASE_URL = "jdbc:h2:tcp://localhost/~/Gshop";
-	private final static String DATABASE_DRIVER = "org.h2.Driver";
-	private final static String DATABASE_DIALECT = "org.hibernate.dialect.H2Dialect";
-	private final static String DATABASE_USERNAME = "sa";
-	private final static String DATABASE_PASSWORD = "sa@123";
 	
-	// dataSource bean will be available
-	@Bean("dataSource")
-	public DataSource getDataSource() {
-		
-		BasicDataSource dataSource = new BasicDataSource();
-		
-		// Providing the database connection information
-		dataSource.setDriverClassName(DATABASE_DRIVER);
-		dataSource.setUrl(DATABASE_URL);
-		dataSource.setUsername(DATABASE_USERNAME);
-		dataSource.setPassword(DATABASE_PASSWORD);
+	private static StandardServiceRegistry registry;
+	private static SessionFactory sf;
+	
+	public static SessionFactory getSessionFactory() {
+		if(sf == null)
+		{
+			try
+			{
+				StandardServiceRegistryBuilder registryBuilder = new StandardServiceRegistryBuilder();
+				Map<String, String> settings = new HashMap<String, String>();
+				settings.put(Environment.DRIVER, "org.h2.Driver");
+				settings.put(Environment.URL, "jdbc:h2:tcp://localhost/~/ECommerce");
+				settings.put(Environment.USER, "sa");
+				settings.put(Environment.PASS, "sa@123");
+				settings.put(Environment.DIALECT, "org.hibernate.dialect.H2Dialect");
+				settings.put(Environment.HBM2DDL_AUTO, "update");
+				settings.put(Environment.SHOW_SQL, "true");
 				
-		
-		return dataSource;
-		
+				registryBuilder.applySettings(settings);
+				
+				registry = registryBuilder.build();
+				
+				MetadataSources sources = new MetadataSources(registry);
+				sources.addAnnotatedClass(Product.class);
+				//sources.addAnnotatedClass(Category.class);
+				
+				Metadata md = sources.getMetadataBuilder().build();
+				sf = md.getSessionFactoryBuilder().build();
+				
+				
+				
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}
+		}
+		return sf;
 	}
 	
-	// sessionFactory bean will be available
-	
-	@Bean
-	public SessionFactory getSessionFactory(DataSource dataSource) {
-		
-		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource);
-		
-		builder.addProperties(getHibernateProperties());
-		builder.scanPackages("net.kzn.shoppingbackend.dto");
-		
-		return builder.buildSessionFactory();
-		
-	}
-
-	
-	
-	// All the hibernate properties will be returned in this method	
-	private Properties getHibernateProperties() {
-		
-		Properties properties = new Properties();
-		
-		
-		properties.put("hibernate.dialect", DATABASE_DIALECT);		
-		properties.put("hibernate.show_sql", "true");
-		properties.put("hibernate.format_sql", "true");
-		
-		//properties.put("hibernate.hbm2ddl.auto", "create");
-		
-		
-		return properties;
-	}
-	
-	// transactionManager bean
-	@Bean
-	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
-		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
-		return transactionManager;
+	public static void shutdown() {
+		if(registry !=null)
+		{
+			StandardServiceRegistryBuilder.destroy(registry);
+		}
 	}
 	
 	

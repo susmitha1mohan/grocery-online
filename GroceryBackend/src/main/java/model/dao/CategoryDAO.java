@@ -6,8 +6,9 @@ import model.entity.Category;
 
 public interface CategoryDAO {
 	
-	boolean add(Category category);
-	List<Category> list();
-	Category get (int id);
+	List<Category>list();
+	Category get(int id);
+	
 
+	
 }

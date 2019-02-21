@@ -8,8 +8,6 @@
 <spring:url var="images" value="/resources/images" />
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,17 +19,16 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>ONLINE SHOPPING -${title}</title>
+<title>Deli SHOPPING - ${title}</title>
 
 <script>
 	window.menu = '${title}';
 </script>
+
 <!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/${css}/bootstrap.min.css" rel="stylesheet">
+<link href="${css}/bootstrap.min.css" rel="stylesheet">
 
 <!-- bootstrap theme -->
-<link href="${css}/bootstrap-read-theme.css" rel="stylesheet">
-
 
 
 <!-- Custom styles for this template -->
@@ -47,8 +44,6 @@
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
 
-
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>
@@ -58,55 +53,46 @@
 	crossorigin="anonymous"></script>
 <body>
 
-	<div class="wrapper">
-
-		<!-- Navigation -->
+  <div class="wrapper">
+				<!-- Navigation -->
 		<%@include file="./shared/navbar.jsp"%>
-
+		
 		<!-- Page Content -->
+		
 		<div class="content">
 			<!-- homepage content loads -->
-
 			<c:if test="${userClickHome == true }">
-				<%@include file="./home.jsp"%>
+				<%@include file="home.jsp"%>
 			</c:if>
-
+			
 			<!-- about content loads -->
-
 			<c:if test="${userClickAbout == true }">
-				<%@include file="./about.jsp"%>
+				<%@include file="about.jsp"%>
 			</c:if>
-
+			
 			<!-- contacts content loads -->
-
 			<c:if test="${userClickContact == true }">
-				<%@include file="./contact.jsp"%>
+				<%@include file="contact.jsp"%>
 			</c:if>
 			
-				<c:if test="${userClickAllProductst == true or userClickCategoryProductst }">
-				<%@include file="./listProducts.jsp"%>
+					<!-- list products content loads -->
+		<c:if test="${userClickAllProductst == true or userClickCategoryProducts == true }">
+				<%@include file="listProducts.jsp"%>
 			</c:if>
+			</div>
 			
-			
-			
-			
-
-		</div>
-
-
-		<!-- Footer -->
+		<!-- Footer comes here -->
 		<%@include file="./shared/footer.jsp"%>
 
-
-		<!-- Bootstrap core JavaScript -->
-		<script src="vendor/jquery/jquery.min.js"></script>
-		<script src="vendor/bootstrap/${js}/bootstrap.bundle.min.js"></script>
+		
+		<!-- jQuery -->
+		<script src="${js}/jquery.js"></script>
+					
+		<!-- Bootstrap core JavaScript -->		
+		<script src="${js}/bootstrap.min.js"></script>
 
 		<!-- self javascript -->
-		<script src="${js}/booystrap.min.js"></script>
-
+		<script src="${js}/myapp.js"></script>
 	</div>
-
 </body>
-
 </html>

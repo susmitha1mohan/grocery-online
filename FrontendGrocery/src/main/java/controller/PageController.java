@@ -22,15 +22,12 @@ public class PageController {
 		
 		//passing the list of categories 
 		mv.addObject("categories", categoryDAO.list());
-		
-		
 		mv.addObject("userClickHome", true);
 		return mv;
 	}
 
 	@RequestMapping(value = { "/about" })
 	public ModelAndView about() {
-
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "About Us");
 		mv.addObject("userClickAbout", true);
@@ -39,7 +36,6 @@ public class PageController {
 	
 	@RequestMapping(value = { "/contact" })
 	public ModelAndView contact() {
-
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Contact Us");
 		mv.addObject("userClickContact", true);
@@ -60,14 +56,12 @@ public class PageController {
 
 }
 	@RequestMapping(value ="/show/category/{id}/products")
-	public ModelAndView showCategoryproducts(@PathVariable("id") int id) {
+	public ModelAndView showCategoryProducts(@PathVariable("id") int id) {
 		ModelAndView mv = new ModelAndView("page");
 		
 				// categoryDAO to fetch a single category
 				Category category = null;
-				
 				category = categoryDAO.get(id);
-				
 				mv.addObject("title",category.getName());
 				
 				//passing the list of categories

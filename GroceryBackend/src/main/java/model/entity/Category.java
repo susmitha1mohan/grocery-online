@@ -1,14 +1,7 @@
 package model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
 public class Category {
-		
+	
 	public int getId() {
 		return id;
 	}
@@ -24,7 +17,9 @@ public class Category {
 	public String getDescription() {
 		return description;
 	}
-	
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getImageURL() {
 		return imageURL;
 	}
@@ -37,35 +32,12 @@ public class Category {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	/**private fields**/
+	private int id;
+	private String name;
+	private String description;
+	private String imageURL;
+	private boolean active = true;
 	
-	@Override
-	public String toString() {
-		return "Category [id=" + id + ", name=" + name + ", description=" + description + ", imageURL=" + imageURL
-				+ ", active=" + active + "]";
-	}
-
-		//private fields
-	    @Id
-	    @GeneratedValue(strategy=GenerationType.IDENTITY)
-		private int id;
-	    
-		private String name;
-		
-		private String description;
-		
-		@Column(name="image_url")//d-b
-		private String imageURL;//class filed
-		
-		@Column(name="is active")
-		private boolean active = true;
-
-		public void setDescription(String string) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		
-				
-
-	}
+}
 
