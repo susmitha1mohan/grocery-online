@@ -8,21 +8,22 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FrontendGrocery Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+
+	<!-- version information -->
 	<properties>
 		<javaee.version>8.0</javaee.version>
-
+		<spring.version>5.1.4.RELEASE</spring.version>
+		<spring.security.version>5.1.4.RELEASE</spring.security.version>
 	</properties>
 
 	<dependencies>
-		
-	<!-- linking GroceryBacked with FrontendGrocery -->
-              <dependency>
-              <groupId>com.sush</groupId>
-		   	  <artifactId>GroceryBackend</artifactId>
-	         <version>0.0.1-SNAPSHOT</version>
-              </dependency>
-		
-              
+
+		<!-- linking GroceryBacked with FrontendGrocery -->
+		<dependency>
+			<groupId>com.sush</groupId>
+			<artifactId>GroceryBackend</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<!--javaee-api -->
 		<dependency>
 			<groupId>javax</groupId>
@@ -30,7 +31,7 @@
 			<version>${javaee.version}</version>
 			<scope>provided</scope>
 		</dependency>
-
+		<!-- JUNIT -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -38,11 +39,24 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- SPRING -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 		<!-- spring-webmvc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>5.1.3.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<!-- JSTL -->
@@ -52,45 +66,33 @@
 			<version>1.2</version>
 		</dependency>
 
+		<!-- SPRING WEB FLOW -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.webflow/spring-webflow -->
+		<dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-webflow</artifactId>
+			<version>2.5.1.RELEASE</version>
+		</dependency>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		<!-- SPRING SECURITY -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -103,7 +105,6 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-
 		</plugins>
 		<finalName>FrontendGrocery</finalName>
 	</build>

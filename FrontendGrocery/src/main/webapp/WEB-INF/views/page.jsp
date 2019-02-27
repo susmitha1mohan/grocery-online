@@ -77,7 +77,7 @@
 			
 					<!-- list products content loads -->
 		<c:if test="${userClickAllProductst == true or userClickCategoryProducts == true }">
-				<%@include file="listProducts.jsp"%>
+				<%@include file="listProduct.jsp"%>
 			</c:if>
 			</div>
 			
